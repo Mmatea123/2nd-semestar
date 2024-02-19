@@ -1,0 +1,26 @@
+package class2;
+
+import java.awt.*;
+import java.net.URI;
+
+public class Exercise3 {
+        public static void main(String[] args) {
+            if (!Desktop.isDesktopSupported()) {
+                System.out.println("Desktop is not supported");
+                return;
+            }
+
+            Desktop desktop = Desktop.getDesktop();
+            if (!desktop.isSupported(Desktop.Action.BROWSE)) {
+                System.out.println("Desktop doesn't support the browse action");
+                return;
+            }
+
+            try {
+                URI uri = new URI("http://www.facebook.com");
+                desktop.browse(uri);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
