@@ -1,0 +1,29 @@
+public class ex1 {
+        public static void main(String[] args) {
+            ThreadGroup group = new ThreadGroup("Group1");
+
+
+            for (int i = 0; i < 5; i++) {
+                Thread thread = new Thread(group, "Thread-" + i);
+                thread.setPriority(i + 1);
+                thread.start();
+            }
+
+
+            for (int i = 0; i < group.activeCount(); i++) {
+                Thread[] threads = new Thread[group.activeCount()];
+                group.enumerate(threads);
+                Thread thread = threads[i];
+                System.out.println("Name: " + thread.getName());
+                System.out.println("Priority: " + thread.getPriority());
+                System.out.println("Is Alive: " + thread.isAlive());
+                System.out.println("Thread Declaration: " + thread.toString());
+
+
+                if (thread.getPriority() < Thread.MAX_PRIORITY) {
+                    thread.setPriority(thread.getPriority() + 1);
+                    System.out.println("New Priority: " + thread.getPriority());
+                }
+            }
+        }
+    }
