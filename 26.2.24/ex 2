@@ -1,0 +1,46 @@
+(vo main mi e ova napisano) 
+
+public class Main {
+    public static void main(String[] args) {
+        TickTack seiko = new TickTack("Seiko", 600);
+        TickTack casio = new TickTack("Casio", 500);
+
+        Thread thread1 = new Thread(seiko);
+        Thread thread2 = new Thread(casio);
+
+        thread1.start();
+        thread2.start();
+    }
+} 
+
+
+
+
+
+public class TickTack implements Runnable {
+    private String name;
+    private int rate;
+
+    public TickTack(String name, int rate) {
+        this.name = name;
+        this.rate = rate;
+    }
+
+
+    public void run() {
+        while (true) {
+            System.out.println(name + ": Tick");
+            try {
+                Thread.sleep(rate);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(name + ": Tack");
+            try {
+                Thread.sleep(rate);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
